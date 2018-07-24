@@ -13,25 +13,26 @@ router.get(
 	})
 );
 
-router.get("/:id", (req, res, next) => {
-	res.json({ message: `get book with id ${req.params.id}` });
-});
+router.get(
+	"/:id",
+	handleAsyncError(async (req, res, next) => {
+		let book = await Book.findById(req.params.id);
+		if (book) return res.json(book);
+		res.json({ message: `Cannot get book with id ${req.params.id}` });
+	})
+);
 
 router.post(
 	"/",
 	handleAsyncError(async (req, res, next) => {
-		try {
-			const newBook = new Book({
-				title: req.body.title,
-				author: req.body.author
-			});
+		const newBook = new Book({
+			title: req.body.title,
+			author: req.body.author
+		});
 
-			await newBook.save();
+		await newBook.save();
 
-			res.status(201).json({ message: `created a new book successfully` });
-		} catch (error) {
-			next(error);
-		}
+		res.status(201).json({ message: `created a new book successfully` });
 	})
 );
 
