@@ -9,7 +9,7 @@ const authors = require("./routes/authors.js");
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
-	app.use({ origin: "https://week8-books-ui.herokuapp.com" });
+	app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 } else {
 	app.use(cors());
 }
