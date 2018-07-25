@@ -13,8 +13,8 @@ const cors = require("cors");
 // };
 
 const corsOptions = {
-	// origin: ["http://localhost:3002", "https://week8-books-ui.herokuapp.com"]
-	origin: getOrigins()
+	origin: ["http://localhost:3002", "https://week8-books-ui.herokuapp.com"]
+	// origin: getOrigins()
 };
 
 const index = require("./routes/index");
