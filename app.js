@@ -3,10 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 
 const corsOptions = {
-	origin:
-		process.env.NODE_ENV === "production"
-			? "https://week8-books-ui.herokuapp.com"
-			: "http://localhost:3001"
+	origin: ["https://week8-books-ui.herokuapp.com/", "http://localhost:3001"]
 };
 
 const index = require("./routes/index");
