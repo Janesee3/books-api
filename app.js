@@ -2,13 +2,11 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-const whitelist = [
-	"http://localhost:3001",
-	"https://week8-books-ui.herokuapp.com"
-];
-
 const corsOptions = {
-	origin: whitelist
+	origin:
+		process.env.NODE_ENV === "production"
+			? "https://week8-books-ui.herokuapp.com"
+			: "http://localhost:3001"
 };
 
 const index = require("./routes/index");
